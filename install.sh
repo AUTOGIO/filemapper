@@ -136,15 +136,10 @@ struct FileItem: Identifiable {
 }
 
 // Main entry point
-@main
-struct FileMapperMain {
-    static func main() {
-        let app = NSApplication.shared
-        let delegate = FileMapperApp()
-        app.delegate = delegate
-        app.run()
-    }
-}
+let app = NSApplication.shared
+let delegate = FileMapperApp()
+app.delegate = delegate
+app.run()
 EOF
 
 # Compile the Swift file into an executable
