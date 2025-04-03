@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# FileMapper App Installation Script
-# This script will create a functional version of the FileMapper app
+# FileMapper Direct Installation Script
+# Save this file as install-filemapper.sh and run it directly
 
 # Exit on any error
 set -e
@@ -134,17 +134,21 @@ struct FileItem: Identifiable {
     let path: String
     let isDirectory: Bool
 }
+EOF
 
-// Main entry point
+# Create a separate main.swift file
+cat > main.swift << 'EOF'
+import Cocoa
+
 let app = NSApplication.shared
 let delegate = FileMapperApp()
 app.delegate = delegate
 app.run()
 EOF
 
-# Compile the Swift file into an executable
+# Compile the Swift files into an executable
 echo "Compiling FileMapper app..."
-swiftc -o FileMapper FileMapper.swift
+swiftc -o FileMapper FileMapper.swift main.swift
 
 # Create application bundle structure
 mkdir -p "FileMapper.app/Contents/MacOS"
